@@ -1,0 +1,31 @@
+---
+- hosts: alertmanager
+  connection: local
+  become: yes
+  become_user: root
+  become_method: sudo
+  roles:
+    - alertmanager
+
+- hosts: node_exporter
+  become: yes
+  become_user: root
+  become_method: sudo
+  roles:
+    - prometheus_node_exporter
+
+- hosts: prometheus
+  connection: local
+  become: yes
+  become_user: root
+  become_method: sudo
+  roles:
+    - prometheus
+
+- hosts: grafana
+  connection: local
+  become: yes
+  become_user: root
+  become_method: sudo
+  roles:
+    - grafana
